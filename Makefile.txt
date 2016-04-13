@@ -1,0 +1,18 @@
+CXX = g++
+CXXFLAGS = -lGL -lGLU -lglut -lglfw -lGLEW -L/usr/lib64
+
+all: assign3
+
+assign3: main.o RgbImage.o SceneObject.o
+	$(CXX) $(CXXFLAGS) -o assign3 main.o RgbImage.o SceneObject.o
+
+main.o: main.cpp RgbImage.h SceneObject.h
+	$(CXX) $(CXXFLAGS) -c main.cpp
+
+RgbImage.o:  md2.cpp RgbImage.h
+	$(CXX) $(CXXFLAGS) -c RgbImage.cpp
+	
+SceneObject.o: SceneObject.cpp SceneObject.h
+	$(CXX) $(CXXFLAGS) -c SceneObject.cpp
+clean:
+	rm -f *.o assign3
